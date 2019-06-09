@@ -67,8 +67,8 @@ class OverviewViewModel : ViewModel() {
             try {
                 var listResult = getPropertiesDeferred.await()
                 _response.value = "Success: ${listResult.size} Mars properties received"
-            } catch (t: Throwable) {
-                _response.value = "Failure: " + t.message
+            } catch (e: Exception) {
+                _response.value = "Failure: " + e.message
             }
         } // close coroutineScope.launch { }
 
