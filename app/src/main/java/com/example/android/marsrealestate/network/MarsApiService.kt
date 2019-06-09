@@ -32,7 +32,7 @@ private val retrofit = Retrofit.Builder()
 
 // COMPLETED (03) Implement the MarsApiService interface with @GET getProperties returning a String
 /*
- * Defines an interface that explains how Retrofit talks to our webserver, using HTTP GET requests.
+ * Defines an interface that explains how Retrofit talks to our web server, using HTTP GET requests.
  * Retrofit will build an object implementing this interface with all of the methods that talk to
  * the server, conceptually much like Room implements our DAO interfaces to build ORM objects to
  * talk to our SQLite database.
