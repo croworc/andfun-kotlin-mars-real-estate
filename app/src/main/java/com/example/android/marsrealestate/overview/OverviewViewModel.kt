@@ -61,10 +61,10 @@ class OverviewViewModel : ViewModel() {
     private fun getMarsRealEstateProperties() {
         coroutineScope.launch {
             // Get the Deferred object for our Retrofit request
-            var getPropertiesDeferred = MarsApi.retrofitService.getProperties()
+            val getPropertiesDeferred = MarsApi.retrofitService.getProperties()
             try {
                 // Await the completion of our Retrofit request
-                var listResult = getPropertiesDeferred.await()
+                val listResult = getPropertiesDeferred.await()
                 // TODO (04) Update to set _property to the first MarsProperty from listResult
                 _status.value = "Success: ${listResult.size} Mars properties retrieved"
             } catch (e: Exception) {
