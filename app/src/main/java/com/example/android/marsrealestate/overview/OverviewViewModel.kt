@@ -71,7 +71,10 @@ class OverviewViewModel : ViewModel() {
             try {
                 // Await the completion of our Retrofit request
                 val listResult = getPropertiesDeferred.await()
-                // TODO (04) Update to set _property to the first MarsProperty from listResult
+                // COMPLETED (04) Update to set _property to the first MarsProperty from listResult
+                if (listResult.size > 0) {
+                    _property.value = listResult[0]
+                }
                 _status.value = "Success: ${listResult.size} Mars properties retrieved"
             } catch (e: Exception) {
                 _status.value = "Failure: ${e.message}"
