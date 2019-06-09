@@ -21,6 +21,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.marsrealestate.network.MarsApi
+import com.example.android.marsrealestate.network.MarsProperty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -31,15 +32,20 @@ import kotlinx.coroutines.launch
  */
 class OverviewViewModel : ViewModel() {
 
-    // COMPLETED (02) Rename response LiveData to status
-    // The internal MutableLiveData String that stores the most recent response
+    // COMPLETED (02) Rename status LiveData to status
+    // The internal MutableLiveData String that stores the most recent status
     private val _status = MutableLiveData<String>()
 
-    // The external immutable LiveData for the response String
-    val response: LiveData<String>
+    // The external immutable LiveData for the status String
+    val status: LiveData<String>
         get() = _status
 
-    // TODO (03) Add the LiveData MarsProperty property with an internal Mutable and an external LiveData
+    // COMPLETED (03) Add the LiveData MarsProperty property with an internal Mutable and
+    // an external LiveData
+    private val _property = MutableLiveData<MarsProperty>()
+
+    val property: LiveData<MarsProperty>
+        get() = _property
 
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
@@ -55,7 +61,7 @@ class OverviewViewModel : ViewModel() {
     }
 
     /**
-     * Sets the value of the response LiveData to the Mars API status or the successful number of
+     * Sets the value of the status LiveData to the Mars API status or the successful number of
      * Mars properties retrieved.
      */
     private fun getMarsRealEstateProperties() {
