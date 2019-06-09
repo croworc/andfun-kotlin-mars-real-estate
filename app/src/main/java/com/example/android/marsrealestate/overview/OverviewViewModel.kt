@@ -22,6 +22,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.marsrealestate.network.MarsApi
 import com.example.android.marsrealestate.network.MarsProperty
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,7 +43,9 @@ class OverviewViewModel : ViewModel() {
         get() = _response
 
 
-    // TODO (04) Create a coroutine Job and a CoroutineScope using the Main Dispatcher
+    // COMPLETED (04) Create a coroutine Job and a CoroutineScope using the Main Dispatcher
+    private var viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
@@ -53,18 +59,25 @@ class OverviewViewModel : ViewModel() {
      * Mars properties retrieved.
      */
     private fun getMarsRealEstateProperties() {
-        // TODO (05) Call coroutineScope.launch and place the rest of the code in it
-        // TODO (06) Call MarsApi.retrofitService.getProperties and call await on the Deferred
-        // TODO (07) Surround the Retrofit code with a try/catch, and set _response appropriately
-        MarsApi.retrofitService.getProperties().enqueue( object: Callback<List<MarsProperty>> {
-            override fun onFailure(call: Call<List<MarsProperty>>, t: Throwable) {
+        // COMPLETED (05) Call coroutineScope.launch and place the rest of the code in it
+        coroutineScope.launch {
+            // COMPLETED (07) Surround the Retrofit code with a try/catch, and set _response appropriately
+            // COMPLETED (06) Call MarsApi.retrofitService.getProperties and call await on the Deferred
+            var getPropertiesDeferred = MarsApi.retrofitService.getProperties()
+            try {
+                var listResult = getPropertiesDeferred.await()
+                _response.value = "Success: ${listResult.size} Mars properties received"
+            } catch (t: Throwable) {
                 _response.value = "Failure: " + t.message
             }
-            override fun onResponse(call: Call<List<MarsProperty>>, response: Response<List<MarsProperty>>) {
-                _response.value = "Success: ${response.body()?.size} Mars properties retrieved"
-            }
-        })
+        } // close coroutineScope.launch { }
+
+    } // close function getMarsRealEstateProperties()
+
+    // COMPLETED (08) Cancel the Coroutine Job when the ViewModel is finished in onCleared
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 
-    // TODO (08) Cancel the Coroutine Job when the ViewModel is finished in onCleared
-}
+} // close class OverviewViewModel
