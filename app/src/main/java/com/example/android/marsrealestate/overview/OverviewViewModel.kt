@@ -76,8 +76,8 @@ class OverviewViewModel : ViewModel() {
                     _property.value = listResult[0]
                 }
                 _status.value = "Success: ${listResult.size} Mars properties retrieved"
-            } catch (e: Exception) {
-                _status.value = "Failure: ${e.message}"
+            } catch (t: Throwable) {
+                _status.value = "Failure: ${t.message}"
             }
         }
     }
