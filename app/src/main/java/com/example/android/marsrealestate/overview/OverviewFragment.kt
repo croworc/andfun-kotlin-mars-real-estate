@@ -43,7 +43,7 @@ class OverviewFragment : Fragment() {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // TODO (04) Switch to inflating FragmentOverviewBinding
+        // COMPLETED (04) Switch to inflating FragmentOverviewBinding
         val binding = FragmentOverviewBinding.inflate(inflater)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
