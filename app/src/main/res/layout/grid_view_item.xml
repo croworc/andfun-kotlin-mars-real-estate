@@ -32,7 +32,7 @@
         android:layout_height="170dp"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
-        android:padding="2dp"
+        android:layout_margin="2dp"
         app:imageUrl="@{property.imgSrcUrl}"
         tools:src="@tools:sample/backgrounds/scenic"/>
 </layout>
