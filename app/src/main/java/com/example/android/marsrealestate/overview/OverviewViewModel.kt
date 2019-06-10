@@ -48,7 +48,7 @@ class OverviewViewModel : ViewModel() {
     private val _properties = MutableLiveData<List<MarsProperty>>()
 
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val property: LiveData<List<MarsProperty>>
+    val properties: LiveData<List<MarsProperty>>
         get() = _properties
 
     // Create a Coroutine scope using a job to be able to cancel when needed
@@ -72,7 +72,7 @@ class OverviewViewModel : ViewModel() {
     private fun getMarsRealEstateProperties() {
         coroutineScope.launch {
             // Get the Deferred object for our Retrofit request
-            var getPropertiesDeferred = MarsApi.retrofitService.getProperties()
+            val getPropertiesDeferred = MarsApi.retrofitService.getProperties()
             try {
                 // Await the completion of our Retrofit request
                 val listResult = getPropertiesDeferred.await()
