@@ -17,6 +17,7 @@
 
 package com.example.android.marsrealestate.overview
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,6 +27,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+
+private const val LOG_TAG = "OverviewViewModel"
 
 /**
  * The [ViewModel] that is attached to the [OverviewFragment].
@@ -74,6 +77,7 @@ class OverviewViewModel : ViewModel() {
                 // Await the completion of our Retrofit request
                 val listResult = getPropertiesDeferred.await()
                 _status.value = "Success: ${listResult.size} Mars properties retrieved"
+                Log.d(LOG_TAG, _status.value)
                 if (listResult.size > 0) {
                     _properties.value = listResult }
             } catch (e: Exception) {
