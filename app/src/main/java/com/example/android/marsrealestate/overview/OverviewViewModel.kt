@@ -27,7 +27,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-// TODO (01) Create a MarsApiStatus enum with the LOADING, ERROR, and DONE states
+// COMPLETED (01) Create a MarsApiStatus enum with the LOADING, ERROR, and DONE states
+enum class MarsApiStatus { LOADING, ERROR, DONE }
 /**
  * The [ViewModel] that is attached to the [OverviewFragment].
  */
@@ -71,7 +72,7 @@ class OverviewViewModel : ViewModel() {
         // TODO (03) Set the correct status for LOADING, ERROR, and DONE
         coroutineScope.launch {
             // Get the Deferred object for our Retrofit request
-            var getPropertiesDeferred = MarsApi.retrofitService.getProperties()
+            val getPropertiesDeferred = MarsApi.retrofitService.getProperties()
             try {
                 // this will run on a thread managed by Retrofit
                 val listResult = getPropertiesDeferred.await()
