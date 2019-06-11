@@ -33,12 +33,13 @@
         tools:context="com.example.android.marsrealestate.MainActivity">
         <!-- COMPLETED (05) Replace the TextView with a RecyclerView -->
         <!-- COMPLETED (11) Add app:listData = "@viewModel.properties" to bind the listData -->
-        <!-- TODO (13) Add android:clipToPadding = false -->
+        <!-- COMPLETED (13) Add android:clipToPadding = false -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/photos_grid"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:padding="6dp"
+            android:clipToPadding="false"
             app:listData="@{viewModel.properties}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
