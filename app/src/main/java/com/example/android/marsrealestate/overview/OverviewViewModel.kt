@@ -97,5 +97,13 @@ class OverviewViewModel : ViewModel() {
         viewModelJob.cancel()
     }
 
-    // TODO (06) Add displayPropertyDetails and displayPropertyDetailsComplete methods
-}
+    // COMPLETED (06) Add displayPropertyDetails and displayPropertyDetailsComplete methods
+    fun displayPropertyDetails(marsProperty: MarsProperty) {
+        _navigateToSelectedProperty.value = marsProperty
+    }
+
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
+    }
+
+} // close class OverviewViewModel
