@@ -17,16 +17,21 @@
 package com.example.android.marsrealestate.detail
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.android.marsrealestate.R
 import com.example.android.marsrealestate.network.MarsProperty
 
 /**
  * The [ViewModel] that is associated with the [DetailFragment].
  */
-class DetailViewModel(@Suppress("UNUSED_PARAMETER")marsProperty: MarsProperty, app: Application) : AndroidViewModel(app) {
-    // TODO (01) Add selected MarsProperty LiveData, and initialize during init, removing @Suppress
+class DetailViewModel(marsProperty: MarsProperty, app: Application) : AndroidViewModel(app) {
+    // COMPLETED (01) Add selected MarsProperty LiveData, and initialize during init, removing @Suppress
+    private var _selectedProperty = MutableLiveData<MarsProperty>()
+    val selectedProperty: LiveData<MarsProperty>
+        get() = _selectedProperty
+
+    init {
+        _selectedProperty.value = marsProperty
+    }
     // TODO (18) Add displayPropertyPrice and displayPropertytype LiveData Transformations.map
 }
