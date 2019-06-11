@@ -26,7 +26,7 @@ import com.example.android.marsrealestate.network.MarsProperty
  */
 class DetailViewModel(marsProperty: MarsProperty, app: Application) : AndroidViewModel(app) {
     // COMPLETED (01) Add selected MarsProperty LiveData, and initialize during init, removing @Suppress
-    private var _selectedProperty = MutableLiveData<MarsProperty>()
+    private val _selectedProperty = MutableLiveData<MarsProperty>()
     val selectedProperty: LiveData<MarsProperty>
         get() = _selectedProperty
 
