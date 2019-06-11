@@ -48,7 +48,10 @@ class OverviewViewModel : ViewModel() {
     val properties: LiveData<List<MarsProperty>>
         get() = _properties
 
-    // TODO (05) Add a _navigateToSelectedProperty MutableLiveData externalized as LiveData
+    // COMPLETED (05) Add a _navigateToSelectedProperty MutableLiveData externalized as LiveData
+    private val _navigateToSelectedProperty = MutableLiveData<MarsProperty>()
+    val navigateToSelectedProperty: LiveData<MarsProperty>
+        get() = _navigateToSelectedProperty
 
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
@@ -71,7 +74,7 @@ class OverviewViewModel : ViewModel() {
     private fun getMarsRealEstateProperties() {
         coroutineScope.launch {
             // Get the Deferred object for our Retrofit request
-            var getPropertiesDeferred = MarsApi.retrofitService.getProperties()
+            val getPropertiesDeferred = MarsApi.retrofitService.getProperties()
             try {
                 _status.value = MarsApiStatus.LOADING
                 // this will run on a thread managed by Retrofit
