@@ -21,7 +21,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO (02) Add <data> declaration with DetailViewModel binding variable -->
+    <!-- COMPLETED (02) Add <data> declaration with DetailViewModel binding variable -->
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.android.marsrealestate.detail.DetailViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
