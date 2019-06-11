@@ -77,5 +77,9 @@ class PhotoGridAdapter : ListAdapter<MarsProperty, PhotoGridAdapter.MarsProperty
         holder.bind(marsProperty)
     }
 
-    // TODO (07) Create an OnClickListener class with a lambda in its constructor that initializes a matching onClick function
-}
+    // COMPLETED (07) Create an OnClickListener class with a lambda in its constructor that initializes a matching onClick function
+    class OnClickListener(val function: (marsProperty: MarsProperty) -> Unit) {
+        fun onClick(marsProperty:MarsProperty) = function(marsProperty)
+    }
+
+} // close class PhotoGridAdapter
