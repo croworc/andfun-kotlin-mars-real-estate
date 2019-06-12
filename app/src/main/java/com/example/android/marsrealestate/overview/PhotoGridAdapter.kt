@@ -45,7 +45,7 @@ class PhotoGridAdapter(val onClickListener: OnClickListener) :
             // which allows the RecyclerView to make the correct view size measurements
             binding.executePendingBindings()
         }
-    }
+    } // close class MarsPropertyViewHolder
 
     /**
      * Allows the RecyclerView to determine which items have changed when the [List] of [MarsProperty]
@@ -59,7 +59,7 @@ class PhotoGridAdapter(val onClickListener: OnClickListener) :
         override fun areContentsTheSame(oldItem: MarsProperty, newItem: MarsProperty): Boolean {
             return oldItem.id == newItem.id
         }
-    }
+    } // close companion object DiffCallback
 
     /**
      * Create new [RecyclerView] item views (invoked by the layout manager)
@@ -74,7 +74,10 @@ class PhotoGridAdapter(val onClickListener: OnClickListener) :
      */
     override fun onBindViewHolder(holder: MarsPropertyViewHolder, position: Int) {
         val marsProperty = getItem(position)
-        // TODO (09) Call the onClick Function from the onClickListener in a lambda from setOnClickListener
+        // COMPLETED (09) Call the onClick Function from the onClickListener in a lambda from setOnClickListener
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(marsProperty)
+        }
         holder.bind(marsProperty)
     }
 
