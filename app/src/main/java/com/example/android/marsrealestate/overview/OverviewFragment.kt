@@ -45,14 +45,15 @@ class OverviewFragment : Fragment() {
         val binding = FragmentOverviewBinding.inflate(inflater)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
-        // TODO (10) Initialize PhotoGridAdapter with an OnClickListener that calls viewModel.displayPropertyDetails
+        // COMPLETED (10) Initialize PhotoGridAdapter with an OnClickListener that calls viewModel.displayPropertyDetails
         // Sets the adapter of the photosGrid RecyclerView
-        binding.photosGrid.adapter = PhotoGridAdapter()
+        binding.photosGrid.adapter = PhotoGridAdapter(
+                PhotoGridAdapter.OnClickListener { viewModel.displayPropertyDetails(it) })
 
         // TODO (13) Observe navigateToSelectedProperty, Navigate when MarsProperty !null, then call displayPropertyDetailsComplete()
 
