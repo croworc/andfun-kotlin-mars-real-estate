@@ -33,5 +33,9 @@ data class MarsProperty(
         // used to map img_src from the JSON to imgSrcUrl in our class
         @Json(name = "img_src") val imgSrcUrl: String,
         val type: String,
-        val price: Double) : Parcelable
-    // TODO (17) Add isRental Boolean property where get() = type == "rent"
+        val price: Double) : Parcelable {
+    // COMPLETED (17) Add isRental Boolean property where get() = type == "rent"
+    val isRental
+        get() = type == "rent"
+
+}
