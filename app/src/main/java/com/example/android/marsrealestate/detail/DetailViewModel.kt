@@ -39,7 +39,7 @@ class DetailViewModel(marsProperty: MarsProperty, app: Application) : AndroidVie
                 when (it.isRental) {
                     true  -> R.string.display_price_monthly_rental
                     false -> R.string.display_price
-                }
+                }, it.price
         )
     } // close transformed LiveData<String> displayPropertyPrice
 
