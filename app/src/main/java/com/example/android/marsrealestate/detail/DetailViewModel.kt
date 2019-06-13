@@ -33,5 +33,24 @@ class DetailViewModel(marsProperty: MarsProperty, app: Application) : AndroidVie
     init {
         _selectedProperty.value = marsProperty
     }
-    // TODO (18) Add displayPropertyPrice and displayPropertytype LiveData Transformations.map
-}
+    // COMPLETED (18) Add displayPropertyPrice and displayPropertytype LiveData Transformations.map
+    val displayPropertyPrice = Transformations.map(selectedProperty) {
+        app.applicationContext.getString(
+                when (it.isRental) {
+                    true  -> R.string.display_price_monthly_rental
+                    false -> R.string.display_price
+                }
+        )
+    } // close transformed LiveData<String> displayPropertyPrice
+
+    val displayPropertyType = Transformations.map(selectedProperty) {
+        app.applicationContext.getString(R.string.display_type,
+                app.applicationContext.getString(
+                        when (it.isRental) {
+                            true  -> R.string.type_rent
+                            false -> R.string.type_sale
+                        }
+                ))
+    } // close transformed LiveData<String> displayPropertyType
+
+} // close class DetailViewModel
