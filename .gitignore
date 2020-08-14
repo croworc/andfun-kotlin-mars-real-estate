@@ -13,10 +13,10 @@
 /.idea/workspace.xml
 /.idea/runConfigurations.xml
 /.idea/vcs.xml
-/.idea/workspace.xml
 /.idea/assetWizardSettings.xml
 /.idea/navEditor.xml
 .DS_Store
 /build
 /captures
 .externalNativeBuild
+/.idea/jarRepositories.xml
