@@ -21,14 +21,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.marsrealestate.network.MarsApi
-import com.example.android.marsrealestate.network.MarsProperty
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * The [ViewModel] that is attached to the [OverviewFragment].
@@ -63,9 +59,9 @@ class OverviewViewModel : ViewModel() {
         coroutineScope.launch {
             // COMPLETED (07) Surround the Retrofit code with a try/catch, and set _response appropriately
             // COMPLETED (06) Call MarsApi.retrofitService.getProperties and call await on the Deferred
-            var getPropertiesDeferred = MarsApi.retrofitService.getProperties()
+            val getPropertiesDeferred = MarsApi.retrofitService.getProperties()
             try {
-                var listResult = getPropertiesDeferred.await()
+                val listResult = getPropertiesDeferred.await()
                 _response.value = "Success: ${listResult.size} Mars properties received"
             } catch (e: Exception) {
                 _response.value = "Failure: " + e.message
