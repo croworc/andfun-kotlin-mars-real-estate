@@ -59,7 +59,7 @@ class OverviewViewModel : ViewModel() {
         coroutineScope.launch {
             // COMPLETED (07) Surround the Retrofit code with a try/catch, and set _response appropriately
             // COMPLETED (06) Call MarsApi.retrofitService.getProperties and call await on the Deferred
-            val getPropertiesDeferred = MarsApi.retrofitService.getProperties()
+            val getPropertiesDeferred = MarsApi.retrofitService.getPropertiesAsync()
             try {
                 val listResult = getPropertiesDeferred.await()
                 _response.value = "Success: ${listResult.size} Mars properties received"
