@@ -40,7 +40,7 @@ class OverviewViewModel : ViewModel() {
 
 
     // COMPLETED (04) Create a coroutine Job and a CoroutineScope using the Main Dispatcher
-    private var viewModelJob = Job()
+    private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     /**
