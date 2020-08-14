@@ -39,7 +39,7 @@ class OverviewViewModel : ViewModel() {
         get() = _response
 
     // Create a Coroutine scope using a job to be able to cancel when needed
-    private var viewModelJob = Job()
+    private val viewModelJob = Job()
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
