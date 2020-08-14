@@ -35,5 +35,6 @@
         android:adjustViewBounds="true"
         android:padding="2dp"
         app:imageUrl="@{viewModel.property.imgSrcUrl}"
+        android:contentDescription="@string/img_description"
         tools:src="@tools:sample/backgrounds/scenic"/>
 </layout>
