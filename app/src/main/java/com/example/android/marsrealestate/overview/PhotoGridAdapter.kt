@@ -60,6 +60,6 @@ class PhotoGridAdapter : ListAdapter<MarsProperty, PhotoGridAdapter.MarsProperty
         }
     } // close companion object DiffCallback
 
-} // close class PhoteGridAdapter
+} // close class PhotoGridAdapter
 
 
