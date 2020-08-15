@@ -21,7 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.android.marsrealestate.databinding.FragmentDetailBinding
 
 /**
@@ -36,14 +36,14 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = this
 
         // COMPLETED (14) Get the selectedProperty from the fragment arguments with DetailFragmentArgs
-        val marsProperty = DetailFragmentArgs.fromBundle(arguments!!).selectedProperty
+        val marsProperty = DetailFragmentArgs.fromBundle(requireArguments()).selectedProperty
 
         // COMPLETED (15) Create the DetailViewModelFactory using the marsProperty and application
         val viewModelFactory = DetailViewModelFactory(marsProperty, application)
 
         // COMPLETED (16) Get the DetailViewModel from the DetailViewModelFactory and set it in the binding
-        binding.viewModel = ViewModelProviders.of(
-                this, viewModelFactory).get(DetailViewModel::class.java)
+        binding.viewModel = ViewModelProvider(this, viewModelFactory)
+                .get(DetailViewModel::class.java)
         return binding.root
     }
 } // close class DetailFragment
