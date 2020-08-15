@@ -77,8 +77,8 @@ class OverviewViewModel : ViewModel() {
                 // Await the completion of our Retrofit request
                 val listResult = getPropertiesDeferred.await()
                 _status.value = "Success: ${listResult.size} Mars properties retrieved"
-                Log.d(LOG_TAG, _status.value)
-                if (listResult.size > 0) {
+                Log.d(LOG_TAG, _status.value as String)
+                if (listResult.isNotEmpty()) {
                     _properties.value = listResult }
             } catch (e: Exception) {
                 _status.value = "Failure: ${e.message}"
