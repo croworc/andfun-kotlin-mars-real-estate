@@ -57,7 +57,7 @@ class OverviewViewModel : ViewModel() {
         get() = _navigateToSelectedProperty
 
     // Create a Coroutine scope using a job to be able to cancel when needed
-    private var viewModelJob = Job()
+    private val viewModelJob = Job()
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -78,7 +78,7 @@ class OverviewViewModel : ViewModel() {
      private fun getMarsRealEstateProperties(filter: MarsApiFilter) {
         coroutineScope.launch {
             // Get the Deferred object for our Retrofit request
-            var getPropertiesDeferred = MarsApi.retrofitService.getProperties(filter.value)
+            val getPropertiesDeferred = MarsApi.retrofitService.getProperties(filter.value)
             try {
                 _status.value = MarsApiStatus.LOADING
                 // this will run on a thread managed by Retrofit
