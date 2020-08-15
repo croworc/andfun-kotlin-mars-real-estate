@@ -33,7 +33,7 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsProperty>?) {
         val adapter = recyclerView.adapter as PhotoGridAdapter
         adapter.submitList(data)
     }
-} // close adapter fucntion bindRecyclerView()
+}
 
 /**
  * Uses the Glide library to load an image by URL into an [ImageView]
