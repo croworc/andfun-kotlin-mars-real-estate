@@ -21,7 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.android.marsrealestate.databinding.FragmentDetailBinding
 
 /**
@@ -32,13 +32,21 @@ import com.example.android.marsrealestate.databinding.FragmentDetailBinding
 class DetailFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val application = requireNotNull(activity).application
+
+        val application = requireNotNull(activity).application // to have access to the string resources
+
         val binding = FragmentDetailBinding.inflate(inflater)
-        binding.setLifecycleOwner(this)
-        val marsProperty = DetailFragmentArgs.fromBundle(arguments!!).selectedProperty
+
+        binding.lifecycleOwner = this // so DataBinding can observe the LifeData in the ViewModel
+
+        // Retrieve the passed-in Parcel from the bundle, which is the selected (clicked)
+        // MarsProperty object.
+        val marsProperty = DetailFragmentArgs.fromBundle(requireArguments()).selectedProperty
+
         val viewModelFactory = DetailViewModelFactory(marsProperty, application)
-        binding.viewModel = ViewModelProviders.of(
-                this, viewModelFactory).get(DetailViewModel::class.java)
+        binding.viewModel = ViewModelProvider(this, viewModelFactory)
+                .get(DetailViewModel::class.java)
+
         return binding.root
     }
 }
