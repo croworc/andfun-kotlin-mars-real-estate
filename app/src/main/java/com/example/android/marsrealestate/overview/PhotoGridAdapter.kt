@@ -30,7 +30,7 @@ import com.example.android.marsrealestate.network.MarsProperty
  * data, including computing diffs between lists.
  */
 // COMPLETED (08) Have PhotoGridAdapter take the OnClickListener class as a constructor property parameter
-class PhotoGridAdapter(val onClickListener: OnClickListener) :
+class PhotoGridAdapter(private val onClickListener: OnClickListener) :
         ListAdapter<MarsProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
 
     /**
