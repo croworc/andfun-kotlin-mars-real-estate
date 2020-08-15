@@ -72,7 +72,7 @@ class OverviewViewModel : ViewModel() {
         // COMPLETED (03) Set the correct status for LOADING, ERROR, and DONE
         coroutineScope.launch {
             // Get the Deferred object for our Retrofit request
-            val getPropertiesDeferred = MarsApi.retrofitService.getProperties()
+            val getPropertiesDeferred = MarsApi.retrofitService.getPropertiesAsync()
             try {
                 _status.value = MarsApiStatus.LOADING
                 // this will run on a thread managed by Retrofit
